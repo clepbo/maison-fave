@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Maison Fave pitch deck: a global creative house for weddings, spaces and gifts.">
+<meta property="og:title" content="Maison Fave Pitch Deck">
+<meta property="og:description" content="A global creative house, one unconventional idea at a time.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#e9e4dc">
+<title>Maison Fave Pitch Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap">
+<style>
+/* Layout: the deck as a quiet stone-paper reel. Slides stack top to bottom at full width, with a slim sticky index. */
+:root {
+  --ground: #e9e4dc;      /* stone paper, from the deck's backgrounds */
+  --surface: #f4f1ec;
+  --ink: #23261c;
+  --muted: #6b6a5e;
+  --olive: #5a6b33;       /* the founder slide's green */
+  --line: rgba(35, 38, 28, .14);
+  --shadow: 0 1px 2px rgba(35,38,28,.08), 0 8px 28px rgba(35,38,28,.10);
+  --display: "Playfair Display", "Didot", "Bodoni 72", Georgia, serif;
+  --body: "DM Sans", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #1b1d17; --surface: #24271f; --ink: #ece8df; --muted: #a8a596;
+    --olive: #a9bb79; --line: rgba(236,232,223,.14);
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #1b1d17; --surface: #24271f; --ink: #ece8df; --muted: #a8a596;
+  --olive: #a9bb79; --line: rgba(236,232,223,.14);
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.35);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+img { max-width: 100%; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--ground); color: var(--ink);
+  font-family: var(--body); font-size: 15px; line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+}
+.bar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+  background: color-mix(in srgb, var(--ground) 88%, transparent);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.bar-inner {
+  max-width: 1200px; margin: 0 auto; padding: 10px 16px;
+  display: flex; align-items: center; gap: 16px;
+}
+.mark { font-family: var(--display); font-weight: 600; font-size: 1.15rem; letter-spacing: .02em; white-space: nowrap; }
+.mark span { font-family: var(--body); font-weight: 400; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-left: 8px; }
+.index {
+  display: flex; gap: 4px; overflow-x: auto; min-width: 0; flex: 1;
+  scrollbar-width: none;
+}
+.index::-webkit-scrollbar { display: none; }
+.index a:first-child { margin-left: auto; }
+.index a {
+  flex: none; min-width: 32px; height: 32px; display: grid; place-items: center;
+  border-radius: 16px; color: var(--muted); text-decoration: none;
+  font-size: .8rem; font-variant-numeric: tabular-nums;
+}
+.index a:hover { color: var(--ink); background: var(--line); }
+.index a[aria-current="true"] { background: var(--olive); color: var(--ground); }
+.index a:focus-visible, .nav button:focus-visible { outline: 2px solid var(--olive); outline-offset: 2px; }
+
+main { max-width: 1200px; margin: 0 auto; padding: 24px 16px 48px; display: grid; gap: 28px; }
+.slide { margin: 0; scroll-margin-top: 72px; display: grid; gap: 8px; }
+.frame {
+  position: relative; width: 100%; aspect-ratio: 16 / 9; max-width: 100%;
+  background: var(--surface); box-shadow: var(--shadow); overflow: hidden;
+}
+.frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.frame video {
+  position: absolute; object-fit: cover; background: #000;
+  left: var(--x); top: var(--y); width: var(--w); height: var(--h);
+}
+figcaption {
+  display: flex; justify-content: space-between; gap: 12px;
+  font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+}
+figcaption b { font-weight: 500; color: var(--ink); }
+.num { font-variant-numeric: tabular-nums; }
+
+.foot { max-width: 1200px; margin: 0 auto; padding: 0 16px 40px; color: var(--muted); font-size: .8rem; }
+
+@media (max-width: 640px) {
+  .mark span { display: none; }
+  main { gap: 20px; padding-top: 16px; }
+  .frame { box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="bar-inner">
+    <div class="mark">Maison Fave<span>Pitch Deck</span></div>
+    <nav class="index" id="index" aria-label="Slides"></nav>
+  </div>
+</header>
+
+<main id="deck"></main>
+<p class="foot">12 slides. Tap a number above to jump to a slide; on a keyboard, use the arrow keys. Videos on slides 2 and 7 play with sound when tapped.</p>
+
+<script>
+const slides = [
+  { t: "Cover", alt: "Maison Fave. A confluence of visionary design, meticulous curation and boundless creative expression. A global creative house, one unconventional idea at a time." },
+  { t: "The Founder", alt: "The Founder. I have always been a builder. 5 years designing and transforming spaces; 3 years planning weddings, from civil ceremonies to destination productions; work spanning Nigeria, the Middle East and Europe; featured on prominent wedding blogs like Bellanaija Weddings. Favour Chiagoziem Chukwubuikem, Founder and Creative Director.",
+    video: { src: "media-2-2.mp4", poster: "poster-2.jpg", x: 58.38, y: 10.13, w: 35.83, h: 56.85, label: "Founder video" } },
+  { t: "Maison Fave Today", alt: "Maison Fave Today. A multidisciplinary creative house, founded 2021. One creative instinct, different expressions: Weddings by Maison Fave, Spaces by Maison Fave, Gifts by Maison Fave." },
+  { t: "The Problem We Saw", alt: "The Problem We Saw. Beautiful events were everywhere, but truly individual experiences were not. Creative direction, planning, design and execution sat apart; a client's vision passed through several hands before becoming real." },
+  { t: "Traction", alt: "Traction. €300 thousand in project value handled since 2023, and 2026 is already the largest year. €300k+ total project value handled, 2023 to 2026; €26,779.14 estimated Maison Fave earned revenue yearly." },
+  { t: "Market Opportunity", alt: "Market Opportunity. A large global market, a focused luxury opportunity. European destination weddings are estimated at $10 to 27 billion. The Nigerian destination wedding market alone is about $209 million, and growing." },
+  { t: "Building Systems", alt: "Five years in, one pattern keeps repeating. Creativity needs systems to move from concept to execution. So we are building systems.",
+    video: { src: "media-7-2.mp4", poster: "poster-7.jpg", x: 66.00, y: 50.31, w: 28.23, h: 42.22, label: "Maison Fave systems video" } },
+  { t: "The Tech Enhancement", alt: "The Tech Enhancement: fixing fragmentation in house. One project's budgets, vendors, timelines, guest list and payments were scattered across five different tools; now one connected Maison Fave system, built in house as internal infrastructure." },
+  { t: "Our Approach", alt: "Our Approach: the growth journey, from a stronger foundation to an Africa–Europe institution. Milestones from 2026 through 2027, 2028 and beyond: operating structure, core team and documented process; local partnerships and vendors for destination clients; multiple concurrent projects." },
+  { t: "The Ask", alt: "The Ask. Mentorship and infrastructure to scale intentionally. We have the creative identity and the portfolio. The next stage is structure, leadership, partnerships and international presence: credibility, network, France, infrastructure." },
+  { t: "Vision", alt: "Vision. A stronger, validated Maison Fave recognized as one of the finest event and design houses in the world. Technology supports the journey; Maison Fave is what we are building." },
+  { t: "Contact", alt: "Contact. Website: weddingsbymaisonfave.com. Instagram: Maison Fave and Weddings by Maison Fave. As featured on Bellanaija Weddings, 2023 and 2026." },
+];
+
+const deck = document.getElementById("deck");
+const index = document.getElementById("index");
+const pad = n => String(n).padStart(2, "0");
+
+slides.forEach((s, i) => {
+  const n = i + 1;
+  const fig = document.createElement("figure");
+  fig.className = "slide"; fig.id = "s" + n;
+  const frame = document.createElement("div");
+  frame.className = "frame";
+  const img = document.createElement("img");
+  img.src = "slide-" + n + ".jpg"; img.alt = s.alt;
+  img.width = 2400; img.height = 1350;
+  img.loading = n <= 2 ? "eager" : "lazy"; img.decoding = "async";
+  frame.appendChild(img);
+  if (s.video) {
+    const v = document.createElement("video");
+    v.src = s.video.src; v.poster = s.video.poster;
+    v.controls = true; v.preload = "none";
+    v.setAttribute("playsinline", ""); v.setAttribute("aria-label", s.video.label);
+    v.style.setProperty("--x", s.video.x + "%"); v.style.setProperty("--y", s.video.y + "%");
+    v.style.setProperty("--w", s.video.w + "%"); v.style.setProperty("--h", s.video.h + "%");
+    frame.appendChild(v);
+  }
+  const cap = document.createElement("figcaption");
+  cap.innerHTML = '<b>' + s.t + '</b><span class="num">' + pad(n) + ' / ' + pad(slides.length) + '</span>';
+  fig.append(frame, cap);
+  deck.appendChild(fig);
+
+  const a = document.createElement("a");
+  a.href = "#s" + n; a.textContent = n; a.title = s.t;
+  a.setAttribute("aria-label", "Slide " + n + ": " + s.t);
+  index.appendChild(a);
+});
+
+const links = [...index.querySelectorAll("a")];
+let current = 0;
+function setCurrent(i) {
+  current = i;
+  links.forEach((l, j) => l.setAttribute("aria-current", j === i ? "true" : "false"));
+  const l = links[i]; index.scrollLeft = l.offsetLeft - index.offsetLeft - (index.clientWidth - l.offsetWidth) / 2;
+}
+setCurrent(0);
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) setCurrent(+e.target.id.slice(1) - 1); });
+}, { rootMargin: "-45% 0px -50% 0px" });
+document.querySelectorAll(".slide").forEach(f => io.observe(f));
+
+// Pause any playing video when another starts
+document.addEventListener("play", e => {
+  document.querySelectorAll("video").forEach(v => { if (v !== e.target) v.pause(); });
+}, true);
+
+document.addEventListener("keydown", e => {
+  if (e.target.closest("video, input, textarea")) return;
+  let n = null;
+  if (["ArrowRight", "ArrowDown", "PageDown", "j"].includes(e.key)) n = Math.min(current + 1, slides.length - 1);
+  if (["ArrowLeft", "ArrowUp", "PageUp", "k"].includes(e.key)) n = Math.max(current - 1, 0);
+  if (e.key === "Home") n = 0;
+  if (e.key === "End") n = slides.length - 1;
+  if (n === null) return;
+  e.preventDefault();
+  document.getElementById("s" + (n + 1)).scrollIntoView({ block: "start" });
+  setCurrent(n);
+});
+</script>
+</body>
+</html>
