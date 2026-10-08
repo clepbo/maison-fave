@@ -86,6 +86,7 @@ main { max-width: 1200px; margin: 0 auto; padding: 24px 16px 48px; display: grid
 .frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 .frame video {
   position: absolute; object-fit: cover; background: #000;
+  box-shadow: 0 0.4cqw 1.6cqw rgba(0, 0, 0, .22);
   left: var(--x); top: var(--y); width: var(--w); height: var(--h);
 }
 figcaption {
@@ -189,13 +190,13 @@ figcaption b { font-weight: 500; color: var(--ink); }
 const slides = [
   { t: "Cover", alt: "Maison Fave. A confluence of visionary design, meticulous curation and boundless creative expression. A global creative house, one unconventional idea at a time." },
   { t: "The Founder", alt: "The Founder. I have always been a builder. 5 years designing and transforming spaces; 3 years planning weddings, from civil ceremonies to destination productions; work spanning Nigeria, the Middle East and Europe; featured on prominent wedding blogs like Bellanaija Weddings. Favour Chiagoziem Chukwubuikem, Founder and Creative Director.",
-    video: { src: "media-2-2.mp4", poster: "poster-2.jpg", x: 58.38, y: 10.13, w: 35.83, h: 56.85, label: "Founder video" } },
+    video: { src: "reel-2.mp4", poster: "poster-2.jpg", x: 67.667, y: 8, w: 26.583, h: 84, label: "Founder interview with Favour Chiagoziem Chukwubuikem" } },
   { t: "Maison Fave Today", alt: "Maison Fave Today. A multidisciplinary creative house, founded 2021. One creative instinct, different expressions: Weddings by Maison Fave, Spaces by Maison Fave, Gifts by Maison Fave." },
   { t: "The Problem We Saw", alt: "The Problem We Saw. Beautiful events were everywhere, but truly individual experiences were not. Creative direction, planning, design and execution sat apart; a client's vision passed through several hands before becoming real." },
   { t: "Traction", alt: "Traction. €300 thousand in project value handled since 2023, and 2026 is already the largest year. €300k+ total project value handled, 2023 to 2026; €26,779.14 estimated Maison Fave earned revenue yearly." },
   { t: "Market Opportunity", alt: "Market Opportunity. A large global market, a focused luxury opportunity. European destination weddings are estimated at $10 to 27 billion. The Nigerian destination wedding market alone is about $209 million, and growing." },
   { t: "Building Systems", alt: "Five years in, one pattern keeps repeating. Creativity needs systems to move from concept to execution. So we are building systems.",
-    video: { src: "media-7-2.mp4", poster: "poster-7.jpg", x: 66.00, y: 50.31, w: 28.23, h: 42.22, label: "Maison Fave systems video" } },
+    video: { src: "reel-7.mp4", poster: "poster-7.jpg", x: 67.667, y: 8, w: 26.583, h: 84, label: "Maison Fave: one creative house, three expressions" } },
   { t: "The Tech Enhancement", alt: "The Tech Enhancement: fixing fragmentation in house. One project's budgets, vendors, timelines, guest list and payments were scattered across five different tools; now one connected Maison Fave system, built in house as internal infrastructure." },
   { t: "Our Approach", alt: "Our Approach: the growth journey, from a stronger foundation to an Africa–Europe institution. Milestones from 2026 through 2027, 2028 and beyond: operating structure, core team and documented process; local partnerships and vendors for destination clients; multiple concurrent projects." },
   { t: "The Ask", alt: "The Ask. Mentorship and infrastructure to scale intentionally. We have the creative identity and the portfolio. The next stage is structure, leadership, partnerships and international presence: credibility, network, France, infrastructure." },
