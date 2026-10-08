@@ -95,6 +95,49 @@ figcaption {
 figcaption b { font-weight: 500; color: var(--ink); }
 .num { font-variant-numeric: tabular-nums; }
 
+/* Clickable "As featured on" line on the contact slide */
+.hotspot {
+  position: absolute; left: var(--x); top: var(--y); width: var(--w); height: var(--h);
+  border: 0; padding: 0; margin: 0; background: transparent; cursor: pointer;
+  -webkit-tap-highlight-color: transparent; border-radius: 6px;
+}
+.hotspot::after {
+  content: ""; position: absolute; left: 4%; right: 4%; bottom: 6%;
+  border-bottom: 1px dashed rgba(35, 38, 28, .55);
+}
+.hotspot:hover, .hotspot:focus-visible { background: rgba(35, 38, 28, .06); }
+.hotspot:focus-visible { outline: 2px solid var(--olive); outline-offset: 2px; }
+
+.pop[hidden] { display: none; }
+.pop {
+  position: fixed; inset: 0; z-index: 50; display: grid; place-items: center;
+  padding: 16px; background: rgba(20, 22, 16, .45);
+  -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+}
+.pop-card {
+  width: 100%; max-width: 440px; background: var(--surface); color: var(--ink);
+  box-shadow: 0 20px 60px rgba(0,0,0,.25); padding: 22px 22px 18px;
+  display: grid; gap: 14px; animation: rise .22s ease-out;
+}
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .pop-card { animation: none; } }
+.pop-head { display: flex; align-items: start; justify-content: space-between; gap: 12px; }
+.pop-eyebrow { font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.pop h2 { margin: 2px 0 0; font-family: var(--display); font-weight: 600; font-size: 1.35rem; line-height: 1.2; }
+.pop-close {
+  flex: none; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line);
+  background: transparent; color: var(--ink); font-size: 1.2rem; line-height: 1; cursor: pointer;
+}
+.pop-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.pop-list a {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 12px 14px; border: 1px solid var(--line); color: var(--ink); text-decoration: none;
+}
+.pop-list a:hover { border-color: var(--olive); }
+.pop-list a:focus-visible, .pop-close:focus-visible { outline: 2px solid var(--olive); outline-offset: 2px; }
+.pop-list small { display: block; color: var(--muted); font-size: .75rem; letter-spacing: .04em; }
+.pop-list .arrow { color: var(--olive); flex: none; }
+
 .foot { max-width: 1200px; margin: 0 auto; padding: 0 16px 40px; color: var(--muted); font-size: .8rem; }
 
 @media (max-width: 640px) {
@@ -114,6 +157,26 @@ figcaption b { font-weight: 500; color: var(--ink); }
 
 <main id="deck"></main>
 
+<div class="pop" id="featured" role="dialog" aria-modal="true" aria-labelledby="featured-title" hidden>
+  <div class="pop-card">
+    <div class="pop-head">
+      <div>
+        <div class="pop-eyebrow">As featured on</div>
+        <h2 id="featured-title">Bellanaija Weddings, 2023 &amp; 2026</h2>
+      </div>
+      <button class="pop-close" id="featured-close" aria-label="Close">&times;</button>
+    </div>
+    <ul class="pop-list">
+      <li><a href="https://www.bellanaijaweddings.com/fisayo-johnson-prewedding-shoot/" target="_blank" rel="noopener">
+        <span>Fisayo &amp; Johnson pre-wedding shoot<small>bellanaijaweddings.com</small></span><span class="arrow" aria-hidden="true">↗</span></a></li>
+      <li><a href="https://www.bellanaijaweddings.com/praise-that-photographer-styled-shoot/" target="_blank" rel="noopener">
+        <span>Styled shoot with Praise That Photographer<small>bellanaijaweddings.com</small></span><span class="arrow" aria-hidden="true">↗</span></a></li>
+      <li><a href="https://www.instagram.com/reel/DQOZwF4gotQ/" target="_blank" rel="noopener">
+        <span>Featured reel<small>instagram.com</small></span><span class="arrow" aria-hidden="true">↗</span></a></li>
+    </ul>
+  </div>
+</div>
+
 <script>
 const slides = [
   { t: "Cover", alt: "Maison Fave. A confluence of visionary design, meticulous curation and boundless creative expression. A global creative house, one unconventional idea at a time." },
@@ -129,8 +192,32 @@ const slides = [
   { t: "Our Approach", alt: "Our Approach: the growth journey, from a stronger foundation to an Africa–Europe institution. Milestones from 2026 through 2027, 2028 and beyond: operating structure, core team and documented process; local partnerships and vendors for destination clients; multiple concurrent projects." },
   { t: "The Ask", alt: "The Ask. Mentorship and infrastructure to scale intentionally. We have the creative identity and the portfolio. The next stage is structure, leadership, partnerships and international presence: credibility, network, France, infrastructure." },
   { t: "Vision", alt: "Vision. A stronger, validated Maison Fave recognized as one of the finest event and design houses in the world. Technology supports the journey; Maison Fave is what we are building." },
-  { t: "Contact", alt: "Contact. Website: weddingsbymaisonfave.com. Instagram: Maison Fave and Weddings by Maison Fave. As featured on Bellanaija Weddings, 2023 and 2026." },
+  { t: "Contact", alt: "Contact. Website: weddingsbymaisonfave.com. Instagram: Weddings by Maison Fave, and Maison Fave. Email: bookings@weddingsbymaisonfave.com. As featured on Bellanaija Weddings, 2023 and 2026.",
+    hotspot: { x: 33, y: 79, w: 34, h: 9, label: "As featured on Bellanaija Weddings, 2023 and 2026. Show the features" } },
 ];
+
+// "As featured on" pop-up
+const pop = document.getElementById("featured");
+let popOpener = null;
+function openFeatured(opener) {
+  popOpener = opener;
+  pop.hidden = false;
+  document.getElementById("featured-close").focus();
+}
+function closeFeatured() {
+  pop.hidden = true;
+  if (popOpener) popOpener.focus();
+}
+document.getElementById("featured-close").addEventListener("click", closeFeatured);
+pop.addEventListener("click", e => { if (e.target === pop) closeFeatured(); });
+pop.addEventListener("keydown", e => {
+  if (e.key === "Escape") { e.preventDefault(); closeFeatured(); return; }
+  if (e.key !== "Tab") return;
+  const f = [...pop.querySelectorAll("a, button")];
+  const first = f[0], last = f[f.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+});
 
 const deck = document.getElementById("deck");
 const index = document.getElementById("index");
@@ -155,6 +242,14 @@ slides.forEach((s, i) => {
     v.style.setProperty("--x", s.video.x + "%"); v.style.setProperty("--y", s.video.y + "%");
     v.style.setProperty("--w", s.video.w + "%"); v.style.setProperty("--h", s.video.h + "%");
     frame.appendChild(v);
+  }
+  if (s.hotspot) {
+    const h = document.createElement("button");
+    h.type = "button"; h.className = "hotspot";
+    h.setAttribute("aria-label", s.hotspot.label); h.setAttribute("aria-haspopup", "dialog");
+    ["x", "y", "w", "h"].forEach(k => h.style.setProperty("--" + k, s.hotspot[k] + "%"));
+    h.addEventListener("click", () => openFeatured(h));
+    frame.appendChild(h);
   }
   const cap = document.createElement("figcaption");
   cap.innerHTML = '<b>' + s.t + '</b><span class="num">' + pad(n) + ' / ' + pad(slides.length) + '</span>';
@@ -187,7 +282,7 @@ document.addEventListener("play", e => {
 }, true);
 
 document.addEventListener("keydown", e => {
-  if (e.target.closest("video, input, textarea")) return;
+  if (!pop.hidden || e.target.closest("video, input, textarea, button")) return;
   let n = null;
   if (["ArrowRight", "ArrowDown", "PageDown", "j"].includes(e.key)) n = Math.min(current + 1, slides.length - 1);
   if (["ArrowLeft", "ArrowUp", "PageUp", "k"].includes(e.key)) n = Math.max(current - 1, 0);
