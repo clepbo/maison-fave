@@ -101,10 +101,18 @@ figcaption b { font-weight: 500; color: var(--ink); }
   border: 0; padding: 0; margin: 0; background: transparent; cursor: pointer;
   -webkit-tap-highlight-color: transparent; border-radius: 6px;
 }
-.hotspot::after {
-  content: ""; position: absolute; left: 4%; right: 4%; bottom: 6%;
-  border-bottom: 1px dashed rgba(35, 38, 28, .55);
+/* Visible "Click Here" button under the Bellanaija line; sizes with the slide */
+.frame { container-type: inline-size; }
+.cta {
+  position: absolute; left: 50%; top: var(--y); transform: translateX(-50%);
+  font-family: var(--body); font-weight: 500; text-transform: uppercase;
+  font-size: 9px; font-size: clamp(9px, 1.3cqw, 17px); letter-spacing: .16em; line-height: 1.2;
+  padding: .5em 1.4em .5em 1.55em; border: 1px solid #23261c; border-radius: 999px;
+  background: #23261c; color: #f4f1ec; cursor: pointer; white-space: nowrap;
+  -webkit-tap-highlight-color: transparent; transition: background .15s, color .15s;
 }
+.cta:hover { background: #5a6b33; border-color: #5a6b33; }
+.cta:focus-visible { outline: 2px solid #5a6b33; outline-offset: 3px; }
 .hotspot:hover, .hotspot:focus-visible { background: rgba(35, 38, 28, .06); }
 .hotspot:focus-visible { outline: 2px solid var(--olive); outline-offset: 2px; }
 
@@ -193,7 +201,7 @@ const slides = [
   { t: "The Ask", alt: "The Ask. Mentorship and infrastructure to scale intentionally. We have the creative identity and the portfolio. The next stage is structure, leadership, partnerships and international presence: credibility, network, France, infrastructure." },
   { t: "Vision", alt: "Vision. A stronger, validated Maison Fave recognized as one of the finest event and design houses in the world. Technology supports the journey; Maison Fave is what we are building." },
   { t: "Contact", alt: "Contact. Website: weddingsbymaisonfave.com. Instagram: Weddings by Maison Fave, and Maison Fave. Email: bookings@weddingsbymaisonfave.com. As featured on Bellanaija Weddings, 2023 and 2026.",
-    hotspot: { x: 33, y: 79, w: 34, h: 9, label: "As featured on Bellanaija Weddings, 2023 and 2026. Show the features" } },
+    hotspot: { x: 33, y: 79, w: 34, h: 9, cta: 88.5, label: "As featured on Bellanaija Weddings, 2023 and 2026. Show the features" } },
 ];
 
 // "As featured on" pop-up
@@ -250,6 +258,13 @@ slides.forEach((s, i) => {
     ["x", "y", "w", "h"].forEach(k => h.style.setProperty("--" + k, s.hotspot[k] + "%"));
     h.addEventListener("click", () => openFeatured(h));
     frame.appendChild(h);
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "cta"; b.textContent = "Click Here";
+    b.setAttribute("aria-label", "Click here to see the Bellanaija Weddings features");
+    b.setAttribute("aria-haspopup", "dialog");
+    b.style.setProperty("--y", s.hotspot.cta + "%");
+    b.addEventListener("click", () => openFeatured(b));
+    frame.appendChild(b);
   }
   const cap = document.createElement("figcaption");
   cap.innerHTML = '<b>' + s.t + '</b><span class="num">' + pad(n) + ' / ' + pad(slides.length) + '</span>';
